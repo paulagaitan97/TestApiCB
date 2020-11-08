@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,16 +19,34 @@ import co.com.ceiba.mobile.pruebadeingreso.Model.UserModel;
 public class MainActivity extends Activity implements UserView, ReceptorConectividad.ConnectivityReceiverListener {
 
     RecyclerView recyclerViewSearchResults;
-    ArrayList<UserModel> listUser;
     UserAdapter userListAdapter;
-
+    EditText editTextSearch;
+    ArrayList<UserModel> listSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listUser = new ArrayList<>();
+        listSearch = new ArrayList<>();
         recyclerViewSearchResults = findViewById(R.id.recyclerViewSearchResults);
         recyclerViewSearchResults.setLayoutManager(new LinearLayoutManager(this));
+        editTextSearch = findViewById(R.id.editTextSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence paramList, int start, int before, int count) {
+                userListAdapter = new UserAdapter(MainActivity.this,listSearch);
+                userListAdapter.filterData(paramList.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         checkConnection();
     }
 
@@ -33,8 +54,14 @@ public class MainActivity extends Activity implements UserView, ReceptorConectiv
     public void userReady(ArrayList<UserModel> userModels) {
         userListAdapter = new UserAdapter(MainActivity.this,userModels);
         recyclerViewSearchResults.setAdapter(userListAdapter);
+        listSearch.addAll(userListAdapter.listUsersOriginal);
+
     }
 
+
+    /*
+    Metodo que comprueba la conexion de internet
+     */
     private  void checkConnection(){
         boolean isConnect = ReceptorConectividad.isConnected(this);
         showSnack(isConnect);
@@ -45,6 +72,7 @@ public class MainActivity extends Activity implements UserView, ReceptorConectiv
             if (isDataNetwork) {
                 UserPresenter userPresenter = new UserPresenter(this);
                 userPresenter.getData();
+
             } else {
                 Toast.makeText(this, "No tiene internet", Toast.LENGTH_SHORT).show();
             }

@@ -1,6 +1,8 @@
 package co.com.ceiba.mobile.pruebadeingreso.Model;
 
-public class UserPostModel {
+import java.io.Serializable;
+
+public class UserPostModel  implements Serializable {
     private  int userId;
     private  int id;
     private  String title;

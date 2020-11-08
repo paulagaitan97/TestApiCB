@@ -1,12 +1,14 @@
 package co.com.ceiba.mobile.pruebadeingreso.Model;
 
+import java.io.Serializable;
+
 /**
  * Clase Encargada de crear un objeto por cada
  * Instancia correspondiente  en el
  * web services.
  * @Autor Paula Gaitán
  */
-public class UserModel {
+public class UserModel  implements Serializable {
     //Declaración de atributos
     int id; // Identificador del usuario
     String name, email,phone; // Atributos de clase
