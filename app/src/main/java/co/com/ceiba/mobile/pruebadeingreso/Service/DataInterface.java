@@ -2,7 +2,7 @@ package co.com.ceiba.mobile.pruebadeingreso.Service;
 import java.util.List;
 import co.com.ceiba.mobile.pruebadeingreso.Model.UserModel;
 import co.com.ceiba.mobile.pruebadeingreso.Model.UserPostModel;
-import co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints;
+import co.com.ceiba.mobile.pruebadeingreso.Util.Endpoints;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

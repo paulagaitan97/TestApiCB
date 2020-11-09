@@ -1,6 +1,13 @@
 package co.com.ceiba.mobile.pruebadeingreso.Model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Clase Encargada de crear un objeto por cada
@@ -8,50 +15,23 @@ import java.io.Serializable;
  * web services.
  * @Autor Paula Gaitán
  */
+//Declara la tabla de la Base de datos
+@Entity
+// AutoGeneradores de metodos de acceso (get) y modificación (set)
+@Getter
+@Setter
+//Declaración e Inicialización del constructor de clase
+@NoArgsConstructor
+@AllArgsConstructor(suppressConstructorProperties = true)
 public class UserModel  implements Serializable {
     //Declaración de atributos
+    @PrimaryKey
     int id; // Identificador del usuario
-    String name, email,phone; // Atributos de clase
-
-    //Declaración e Inicialización del constructor de clase
-    public UserModel(int id, String name, String email, String phone) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-    }
-
-    // Declaración e Inicialización de getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    @ColumnInfo(name = "name")
+    String name;
+    @ColumnInfo(name = "email")
+    String email;
+    @ColumnInfo(name = "phone")
+    String phone;
 
 }

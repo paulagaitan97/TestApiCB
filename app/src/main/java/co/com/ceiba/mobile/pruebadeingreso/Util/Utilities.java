@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.Service;
+package co.com.ceiba.mobile.pruebadeingreso.Util;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -11,11 +11,11 @@ import android.net.NetworkInfo;
  * Clase que verifica el estado de la red
  * y conexión de la red movil con wifi o datos moviles.
  */
-public class ReceptorConectividad extends BroadcastReceiver {
+public class Utilities extends BroadcastReceiver {
 
     public static ConnectivityReceiverListener connectivityReceiverListener;
 
-    public ReceptorConectividad() {
+    public Utilities() {
         super();
     }
 

@@ -1,6 +1,5 @@
 package co.com.ceiba.mobile.pruebadeingreso.Service;
-
-import co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints;
+import co.com.ceiba.mobile.pruebadeingreso.Util.Endpoints;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

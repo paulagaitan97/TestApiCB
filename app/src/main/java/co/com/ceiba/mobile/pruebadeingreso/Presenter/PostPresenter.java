@@ -23,6 +23,12 @@ public class PostPresenter {
         }
     }
 
+    /**
+     * Metodo encargado de obtener la lista de usuarios
+     * almacenados en el web services
+     * @Author Paula Gaitán
+     */
+
     public void getPostData() {
         postService
                 .getUserPostData()

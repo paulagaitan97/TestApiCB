@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.rest;
+package co.com.ceiba.mobile.pruebadeingreso.Util;
 
 public class Endpoints {
     public static final String URL_BASE = "https://jsonplaceholder.typicode.com";

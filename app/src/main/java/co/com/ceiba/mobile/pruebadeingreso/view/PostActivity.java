@@ -11,9 +11,9 @@ import co.com.ceiba.mobile.pruebadeingreso.Model.UserModel;
 import co.com.ceiba.mobile.pruebadeingreso.Model.UserPostModel;
 import co.com.ceiba.mobile.pruebadeingreso.Presenter.PostPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.R;
-import co.com.ceiba.mobile.pruebadeingreso.Service.ReceptorConectividad;
+import co.com.ceiba.mobile.pruebadeingreso.Util.Utilities;
 
-public class PostActivity extends Activity implements PostView, ReceptorConectividad.ConnectivityReceiverListener{
+public class PostActivity extends Activity implements PostView, Utilities.ConnectivityReceiverListener{
 
     UserModel detailUser = null;
     TextView name,phone,email;
@@ -58,12 +58,12 @@ public class PostActivity extends Activity implements PostView, ReceptorConectiv
     Metodo que comprueba la conexion de internet
      */
     private  void checkConnection(){
-        boolean isConnect = ReceptorConectividad.isConnected(this);
+        boolean isConnect = Utilities.isConnected(this);
         showSnack(isConnect);
     }
     private void showSnack(boolean isConnected) {
         if (isConnected) {
-            boolean isDataNetwork = ReceptorConectividad.isOnlineNet();
+            boolean isDataNetwork = Utilities.isOnlineNet();
             if (isDataNetwork) {
                 PostPresenter postPresenter = new PostPresenter(this, detailUser.getId());
                 postPresenter.getPostData();

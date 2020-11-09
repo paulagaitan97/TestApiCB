@@ -13,10 +13,10 @@ import java.util.ArrayList;
 
 import co.com.ceiba.mobile.pruebadeingreso.Presenter.UserPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.R;
-import co.com.ceiba.mobile.pruebadeingreso.Service.ReceptorConectividad;
+import co.com.ceiba.mobile.pruebadeingreso.Util.Utilities;
 import co.com.ceiba.mobile.pruebadeingreso.Model.UserModel;
 
-public class MainActivity extends Activity implements UserView, ReceptorConectividad.ConnectivityReceiverListener {
+public class MainActivity extends Activity implements UserView, Utilities.ConnectivityReceiverListener {
 
     RecyclerView recyclerViewSearchResults;
     UserAdapter userListAdapter;
@@ -63,15 +63,15 @@ public class MainActivity extends Activity implements UserView, ReceptorConectiv
     Metodo que comprueba la conexion de internet
      */
     private  void checkConnection(){
-        boolean isConnect = ReceptorConectividad.isConnected(this);
+        boolean isConnect = Utilities.isConnected(this);
         showSnack(isConnect);
     }
     private void showSnack(boolean isConnected) {
         if (isConnected) {
-            boolean isDataNetwork = ReceptorConectividad.isOnlineNet();
+            boolean isDataNetwork = Utilities.isOnlineNet();
             if (isDataNetwork) {
                 UserPresenter userPresenter = new UserPresenter(this);
-                userPresenter.getData();
+                userPresenter.getData(MainActivity.this);
 
             } else {
                 Toast.makeText(this, "No tiene internet", Toast.LENGTH_SHORT).show();
