@@ -1,6 +1,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.view;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,17 +20,22 @@ public class PostActivity extends Activity implements PostView, Utilities.Connec
     TextView name,phone,email;
     RecyclerView recyclerViewPostsResults;
     PostAdapter postAdapter;
+    ProgressDialog dialogLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+        dialogLoading = new ProgressDialog(this);
         name = findViewById(R.id.name);
         phone = findViewById(R.id.phone);
         email = findViewById(R.id.email);
         recyclerViewPostsResults = findViewById(R.id.recyclerViewPostsResults);
         recyclerViewPostsResults.setLayoutManager(new LinearLayoutManager(this));
         detailUser = (UserModel) getIntent().getSerializableExtra("DetailUser");
+        dialogLoading.setIcon(R.mipmap.ic_launcher);
+        dialogLoading.setMessage("Cargando...");
+        dialogLoading.show();
     }
 
 
@@ -52,6 +58,7 @@ public class PostActivity extends Activity implements PostView, Utilities.Connec
     public void postReady(ArrayList<UserPostModel> userPostModels) {
         postAdapter = new PostAdapter(PostActivity.this,userPostModels);
         recyclerViewPostsResults.setAdapter(postAdapter);
+        dialogLoading.dismiss();
     }
 
     /*
@@ -69,10 +76,12 @@ public class PostActivity extends Activity implements PostView, Utilities.Connec
                 postPresenter.getPostData();
 
             } else {
-                Toast.makeText(this, "No tiene internet", Toast.LENGTH_SHORT).show();
+                dialogLoading.dismiss();
+                Toast.makeText(this, "No tiene conexión a internet", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "No tiene internet", Toast.LENGTH_SHORT).show();
+            dialogLoading.dismiss();
+            Toast.makeText(this, "No tiene red móvil o red wifi activa.", Toast.LENGTH_SHORT).show();
         }
     }
 
