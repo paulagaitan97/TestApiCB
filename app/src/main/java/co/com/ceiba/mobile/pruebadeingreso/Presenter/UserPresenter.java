@@ -2,12 +2,10 @@ package co.com.ceiba.mobile.pruebadeingreso.Presenter;
 
 import android.content.Context;
 import android.util.Log;
-
 import androidx.room.Room;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import co.com.ceiba.mobile.pruebadeingreso.Model.UserModel;
 import co.com.ceiba.mobile.pruebadeingreso.Service.UserService;
 import co.com.ceiba.mobile.pruebadeingreso.Util.DataBase;

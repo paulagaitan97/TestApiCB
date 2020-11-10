@@ -29,13 +29,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @NonNull
     @Override
     //Este método se llama conjuntamente cuando se crea el adaptador y se usa para inicializar el ViewHolder.
-    public UserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public UserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View viewDetail = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_list_item, viewGroup, false);
         return new UserAdapter.ViewHolder(viewDetail);
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         TextView name, phone, email;
         Button btn_view_post;
         UserModel detailUser = null;
@@ -64,12 +65,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         viewHolder.phone.setText(listUsersOriginal.get(i).getPhone());
         viewHolder.email.setText(listUsersOriginal.get(i).getEmail());
         viewHolder.detailUser = new UserModel(listUsersOriginal.get(i).getId(),listUsersOriginal.get(i).getName(),listUsersOriginal.get(i).getEmail(),listUsersOriginal.get(i).getPhone());
+
     }
 
     //Este método devuelve la cantidad de elementos que contiene la lista..
     @Override
     public int getItemCount() {
-        return listUsersOriginal.size();
+        return listUsersOriginal == null ? 0 : listUsersOriginal.size();
     }
 }
 

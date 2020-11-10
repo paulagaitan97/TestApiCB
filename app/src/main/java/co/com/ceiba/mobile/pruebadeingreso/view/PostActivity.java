@@ -35,6 +35,7 @@ public class PostActivity extends Activity implements PostView, Utilities.Connec
         detailUser = (UserModel) getIntent().getSerializableExtra("DetailUser");
         dialogLoading.setIcon(R.mipmap.ic_launcher);
         dialogLoading.setMessage("Cargando...");
+        dialogLoading.setCancelable(false);
         dialogLoading.show();
     }
 

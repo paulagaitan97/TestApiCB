@@ -7,11 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.room.Room;
-
 import java.util.ArrayList;
 import co.com.ceiba.mobile.pruebadeingreso.Presenter.UserPresenter;
 import co.com.ceiba.mobile.pruebadeingreso.R;
@@ -57,15 +56,17 @@ public class MainActivity extends Activity implements UserView, Utilities.Connec
         });
         dialogLoading.setIcon(R.mipmap.ic_launcher);
         dialogLoading.setMessage("Cargando...");
+        dialogLoading.setCancelable(false);
         dialogLoading.show();
         checkConnection();
     }
 
     @Override
     public void userReady(ArrayList<UserModel> userModels) {
-        userListAdapter = new UserAdapter(this,userModels);
+        userListAdapter = new UserAdapter(this, userModels);
         recyclerViewSearchResults.setAdapter(userListAdapter);
         dialogLoading.dismiss();
+
     }
 
 
